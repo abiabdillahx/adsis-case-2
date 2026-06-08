@@ -137,7 +137,7 @@ docker-compose down -v
 | Nama | NIM | Bagian |
 |---|---|---|
 | Muhammad Abi Abdillah | 245150701111027 | Infrastruktur & Docker (docker-compose, Nginx, .env) |
-| Muhammad Farhan Muzakkiy | 245150707111048 | Backend App (FastAPI, CRUD, koneksi MySQL) |
+| Muhammad Farhan Muzakkiy | 245150707111048 | Backend App (FastAPI, CRUD, koneksi PostgreSQL) |
 | Lorem Ipsum | 000000003 | MinIO Integration & Dokumentasi (README, screenshot) |
 
 ---
