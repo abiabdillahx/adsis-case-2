@@ -51,7 +51,7 @@ Pastikan sudah terinstall:
 
 **1. Clone repositori ini**
 ```bash
-git clone https://github.com/abiabdillax/adsis-case-2.git
+git clone https://github.com/abiabdillahx/adsis-case-2.git
 cd adsis-case-2
 ```
 
@@ -138,7 +138,7 @@ docker-compose down -v
 |---|---|---|
 | Muhammad Abi Abdillah | 245150701111027 | Infrastruktur & Docker (docker-compose, Nginx, .env) |
 | Muhammad Farhan Muzakkiy | 245150707111048 | Backend App (FastAPI, CRUD, koneksi PostgreSQL) |
-| Lorem Ipsum | 000000003 | MinIO Integration & Dokumentasi (README, screenshot) |
+| Mukhamad Irfan Nur Khakim | 245150701111021 | MinIO Integration & Dokumentasi (README, screenshot) |
 
 ---
 
@@ -148,6 +148,6 @@ docker-compose down -v
 
 - [ ] Semua container berstatus `Up`
 - [ ] Aplikasi CRUD dapat diakses di browser
-- [ ] Data berhasil tersimpan ke MySQL
+- [ ] Data berhasil tersimpan ke PostgreSQL
 - [ ] File upload berhasil masuk ke MinIO
 - [ ] Data tetap ada setelah `docker-compose down` lalu `up` kembali
