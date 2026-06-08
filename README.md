@@ -144,10 +144,59 @@ docker-compose down -v
 
 ## 📸 Bukti Pengujian
 
-> _(Screenshot akan ditambahkan setelah semua service berjalan)_
+### 1. Semua Container Berstatus Up
 
-- [ ] Semua container berstatus `Up`
-- [ ] Aplikasi CRUD dapat diakses di browser
-- [ ] Data berhasil tersimpan ke PostgreSQL
-- [ ] File upload berhasil masuk ke MinIO
-- [ ] Data tetap ada setelah `docker-compose down` lalu `up` kembali
+Seluruh container berhasil dijalankan menggunakan Docker Compose dan berada pada status **Up**.
+
+![Docker PS](screenshots/docker-ps.jpeg)
+
+---
+
+### 2. Aplikasi CRUD Dapat Diakses
+
+Aplikasi berhasil diakses melalui browser menggunakan Nginx sebagai reverse proxy.
+
+![Aplikasi Web](screenshots/web-app.jpeg)
+
+---
+
+### 3. Data Berhasil Tersimpan ke PostgreSQL
+
+Data mahasiswa berhasil tersimpan pada database PostgreSQL dan dapat diverifikasi melalui pgAdmin.
+
+![PostgreSQL Data](screenshots/postgresql-data.jpeg)
+
+---
+
+### 4. File Upload Berhasil Masuk ke MinIO
+
+File yang diunggah berhasil tersimpan pada bucket `uploads` di MinIO.
+
+![MinIO Upload](screenshots/minio-upload.jpeg)
+
+---
+
+### 5. Data Tetap Ada Setelah Restart Container
+
+Setelah menjalankan:
+
+```bash
+docker-compose down
+docker-compose up -d
+```
+
+data pada PostgreSQL tetap tersedia karena menggunakan Docker Volume sebagai persistent storage.
+
+![Persistence Test](screenshots/persistence-test.jpeg)
+
+---
+
+## ✅ Hasil Pengujian
+
+| Pengujian | Status |
+|-----------|---------|
+| Semua container berstatus Up | ✅ Berhasil |
+| Aplikasi CRUD dapat diakses | ✅ Berhasil |
+| Data tersimpan di PostgreSQL | ✅ Berhasil |
+| File upload tersimpan di MinIO | ✅ Berhasil |
+| Data tetap ada setelah restart container | ✅ Berhasil |
