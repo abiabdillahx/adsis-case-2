@@ -14,7 +14,7 @@ Tujuannya sederhana: siapapun bisa clone repo ini, jalankan satu perintah, dan s
 | Komponen | Teknologi |
 |---|---|
 | App / Backend | Python (FastAPI) |
-| Database | MySQL |
+| Database | PostgreSQL |
 | Object Storage | MinIO |
 | Gateway | Nginx (Reverse Proxy) |
 | Orkestrasi | Docker & Docker Compose |
@@ -24,14 +24,16 @@ Tujuannya sederhana: siapapun bisa clone repo ini, jalankan satu perintah, dan s
 ## 🗂️ Struktur Proyek
 
 ```
-nusantara-tech/
+adsis-case-2/
 ├── docker-compose.yml       # Orkestrasi semua service
 ├── .env.example             # Template konfigurasi environment
 ├── nginx/
-│   └── nginx.conf           # Konfigurasi reverse proxy
+│   └── default.conf         # Konfigurasi reverse proxy
 ├── app/
 │   ├── Dockerfile           # Build image FastAPI
 │   ├── main.py              # Source code aplikasi CRUD
+│   ├── models.py            # Definisi model database
+│   ├── database.py          # Konfigurasi koneksi database
 │   └── requirements.txt     # Dependency Python
 └── README.md
 ```
@@ -57,7 +59,7 @@ cd adsis-case-2
 ```bash
 cp .env.example .env
 ```
-Lalu edit file `.env` sesuai kebutuhan (lihat bagian Konfigurasi di bawah).
+Lalu edit file `.env` sesuai kebutuhan.
 
 **3. Jalankan semua service**
 ```bash
@@ -69,7 +71,7 @@ docker-compose up -d
 docker-compose ps
 ```
 
-Semua service (`app`, `mysql`, `minio`, `nginx`) harus berstatus `Up`.
+Semua service (`app`, `db`, `minio`, `nginx`) harus berstatus `Up`.
 
 ---
 
@@ -80,6 +82,7 @@ Semua service (`app`, `mysql`, `minio`, `nginx`) harus berstatus `Up`.
 | Aplikasi Web | http://localhost | Via Nginx (port 80) |
 | API Docs (Swagger) | http://localhost/docs | Auto-generated FastAPI docs |
 | MinIO Dashboard | http://localhost:9001 | Login dengan kredensial di `.env` |
+| pgAdmin | http://localhost:5050 | GUI Database (admin@mail.com / admin123) |
 
 ---
 
@@ -89,7 +92,7 @@ MinIO digunakan sebagai penyimpanan file upload (simulasi AWS S3).
 
 - **Dashboard:** http://localhost:9001
 - **Default bucket:** `uploads` (dibuat otomatis saat pertama kali jalan)
-- **Lokasi file:** Tersimpan di Docker volume `minio_data`, tidak akan hilang meski container di-restart
+- **Lokasi file:** Tersimpan di Docker volume `minio_data`
 
 ---
 
@@ -98,23 +101,19 @@ MinIO digunakan sebagai penyimpanan file upload (simulasi AWS S3).
 Salin `.env.example` menjadi `.env` dan isi nilainya:
 
 ```env
-# Database
-MYSQL_ROOT_PASSWORD=your_root_password
-MYSQL_DATABASE=nusantara_db
-MYSQL_USER=nusantara_user
-MYSQL_PASSWORD=your_password
+# Database (PostgreSQL)
+POSTGRES_DB=nusantara_db
+POSTGRES_USER=nusantara_user
+POSTGRES_PASSWORD=your_password
 
 # MinIO
 MINIO_ROOT_USER=minioadmin
 MINIO_ROOT_PASSWORD=your_minio_password
 MINIO_BUCKET=uploads
-
-# App
-DATABASE_URL=mysql+pymysql://nusantara_user:your_password@mysql/nusantara_db
 MINIO_ENDPOINT=minio:9000
 ```
 
-> ⚠️ Jangan pernah commit file `.env` ke GitHub. File `.gitignore` sudah dikonfigurasi untuk mengecualikannya.
+> !!! Jangan pernah commit file `.env` ke GitHub.
 
 ---
 
@@ -137,7 +136,7 @@ docker-compose down -v
 
 | Nama | NIM | Bagian |
 |---|---|---|
-| Lorem Ipsum | 000000001 | Infrastruktur & Docker (docker-compose, Nginx, .env) |
+| Muhammad Abi Abdillah | 245150701111027 | Infrastruktur & Docker (docker-compose, Nginx, .env) |
 | Lorem Ipsum | 000000002 | Backend App (FastAPI, CRUD, koneksi MySQL) |
 | Lorem Ipsum | 000000003 | MinIO Integration & Dokumentasi (README, screenshot) |
 

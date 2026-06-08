@@ -11,13 +11,15 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 # MinIO Client
+MINIO_ENDPOINT = os.getenv("MINIO_ENDPOINT", "minio:9000")
+BUCKET_NAME = os.getenv("MINIO_BUCKET", "uploads")
+
 minio_client = Minio(
-    "minio:9000",
+    MINIO_ENDPOINT,
     access_key=os.getenv("MINIO_ROOT_USER"),
     secret_key=os.getenv("MINIO_ROOT_PASSWORD"),
     secure=False
 )
-BUCKET_NAME = "uploads"
 
 if not minio_client.bucket_exists(BUCKET_NAME):
     minio_client.make_bucket(BUCKET_NAME)
