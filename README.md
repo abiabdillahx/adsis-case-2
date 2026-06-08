@@ -142,7 +142,7 @@ docker-compose down -v
 
 ---
 
-## 📸 Bukti Pengujian
+## 📸 Bukti Dokumentasi
 
 ### 1. Semua Container Berstatus Up
 
@@ -191,7 +191,7 @@ data pada PostgreSQL tetap tersedia karena menggunakan Docker Volume sebagai per
 
 ---
 
-## ✅ Hasil Pengujian
+## ✅ Hasil Dokumentasi
 
 | Pengujian | Status |
 |-----------|---------|
