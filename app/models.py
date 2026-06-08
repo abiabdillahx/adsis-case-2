@@ -1,10 +1,10 @@
 from sqlalchemy import Column, Integer, String
 from database import Base
 
-class Todo(Base):
-    __tablename__ = "todos"
+class Student(Base):
+    __tablename__ = "students"
 
     id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, index=True)
-    description = Column(String)
-    attachment = Column(String)
+    name = Column(String, index=True)
+    nim = Column(String, unique=True, index=True)
+    profile_image = Column(String)

@@ -1,14 +1,15 @@
 from pydantic import BaseModel
 
-class TodoCreate(BaseModel):
-    title: str
-    description: str
+class StudentBase(BaseModel):
+    name: str
+    nim: str
 
-class TodoResponse(BaseModel):
+class StudentCreate(StudentBase):
+    pass
+
+class StudentResponse(StudentBase):
     id: int
-    title: str
-    description: str
-    attachment: str | None = None
+    profile_image: str | None = None
 
     class Config:
         from_attributes = True
